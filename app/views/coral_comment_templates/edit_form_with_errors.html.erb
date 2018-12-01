@@ -1,0 +1,42 @@
+<% if @coral_comment.errors.any? %>
+  <% @coral_comment.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit coral comment #<%= @coral_comment.id %>
+</h1>
+
+<hr>
+
+<form action="/update_coral_comment/<%= @coral_comment.id %>" method="post">
+
+  <div class="form-group">
+    <label for="coral_id">
+      Coral
+    </label>
+
+    <input type="text" id="coral_id" name="coral_id" class="form-control" value="<%= @coral_comment.coral_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="commenter_id">
+      Commenter
+    </label>
+
+    <input type="text" id="commenter_id" name="commenter_id" class="form-control" value="<%= @coral_comment.commenter_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update coral comment
+  </button>
+</form>
+
+<hr>
+
+<a href="/coral_comments">
+  Go back
+</a>

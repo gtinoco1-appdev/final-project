@@ -1,0 +1,38 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All families
+    </h1>
+
+    <a href="/families/new" class="btn btn-block btn-outline-secondary">
+      Add a new family
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="col-md-10">
+  <div class="card-columns">
+    <% @families.each do |family| %>
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">
+            <a href="/families/<%=family.id%>"</a>
+              <%= family.title %>
+            </h4>
+          </div>
+
+          <div class="card-body">
+            <a href="/families/<%= family.id %> ">
+              <img src="<%= family.photo %>" class="img-fluid">
+            </a>
+          </div>
+          <!-- card-body -->
+        </div>
+        <!-- card  -->
+
+      <% end %>
+    </div>
+  </div>

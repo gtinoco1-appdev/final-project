@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      Coral Market
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsible-nav-links" aria-controls="collapsible-nav-links" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="collapsible-nav-links">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/users">
+            <i class="fas fa-users"></i>
+            <span class="hidden-sm">All Users</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/corals">
+            <i class="fas fa-images"></i>
+            <span class="hidden-sm">All Posts</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/my_page">
+            <!--<i class="fas fa-star"></i>-->
+            <span class="hidden-sm"> <span class="badge badge-secondary"><%= current_user.corals.count %> </span>
+              My Posts </span></a>
+        </li>
+
+        <% if current_user.blank? %>
+        <% else %>
+          <li class="nav-item">
+            <a class="nav-link" href="/families">
+              <i class="fas fa-archive"></i>
+              <span class="hidden-sm">
+                Categories
+              </span></a>
+
+          </li>
+        <% end %>
+
+
+      </ul>
+
+
+      <ul class="navbar-nav">
+        <% if current_user.blank? %>
+          <li class="nav-item">
+            <a href="/users/sign_in" class="nav-link">
+              Log in
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/users/sign_up" class="nav-link">
+              Sign up
+            </a>
+          </li>
+        <% else %>
+
+
+          <li class="nav-item">
+            <a href="/users/edit" class="nav-link">
+              <i class="fas fa-edit"> </i>
+              <%= current_user.username %>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/users/sign_out" data-method="delete" class="nav-link">
+              <i class="fas fa-sign-out-alt"> </i>
+              Sign out
+            </a>
+          </li>
+
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <!-- .container -->
+</nav>

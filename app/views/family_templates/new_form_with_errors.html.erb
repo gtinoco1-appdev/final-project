@@ -1,0 +1,38 @@
+<!-- Validation failure messages -->
+<% if @family.present? %>
+  <% if @family.errors.any? %>
+    <% @family.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new family
+</h1>
+
+
+<hr>
+
+<form action="/create_family" method="post">
+
+  <div class="form-group">
+    <label for="title">
+      Title
+    </label>
+
+    <input type="text" id="title" name="title" class="form-control" value="<%= @family.title %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create family
+  </button>
+</form>
+
+<hr>
+
+<a href="/families">
+  Go back
+</a>

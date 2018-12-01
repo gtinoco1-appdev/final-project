@@ -1,0 +1,86 @@
+<h1>
+  Add a new coral
+</h1>
+
+
+<hr>
+
+<form action="/create_coral" method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="title">
+      Title
+    </label>
+
+    <input type="text" id="title" name="title" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="family_id">
+      Family
+    </label>
+
+     <%= select_tag(:family_id, options_from_collection_for_select(Family.all, :id, :title, @coral.family_id), :class => "form-control") %>
+  </div>
+
+  <div class="form-group">
+    <label for="location_id">
+      Location
+    </label>
+
+    <input type="text" id="location_id" name="location_id" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="caption">
+      Caption
+    </label>
+
+    <input type="text" id="caption" name="caption" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="photo1">
+      Photo1
+    </label>
+
+    <input type="file" id="photo1" name="photo1" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="photo2">
+      Photo2
+    </label>
+
+    <input type="file" id="photo2" name="photo2" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <input type="hidden" name="seller_id" class="form-control" value="<%= current_user.id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="price">
+      Price
+    </label>
+
+    <input type="text" id="price" name="price" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="obo">
+      Obo
+    </label>
+
+    <input type="text" id="obo" name="obo" class="form-control">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create coral
+  </button>
+</form>
+
+<hr>
+
+<a href="/corals">
+  Go back
+</a>

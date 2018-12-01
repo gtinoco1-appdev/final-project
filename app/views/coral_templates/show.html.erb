@@ -1,0 +1,107 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Coral #<%= @coral.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/corals" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/corals/<%= @coral.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit coral
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_coral/<%= @coral.id %>" class="btn btn-block btn-outline-secondary">
+          Delete coral
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @coral.title %>
+      </dd>
+
+      <dt>
+        Family
+      </dt>
+      <dd>
+        <%= @coral.family_id %>
+      </dd>
+
+      <dt>
+        Location
+      </dt>
+      <dd>
+        <%= @coral.location_id %>
+      </dd>
+
+      <dt>
+        Caption
+      </dt>
+      <dd>
+        <%= @coral.caption %>
+      </dd>
+
+      <dt>
+        Photo1
+      </dt>
+      <dd>
+        <%= @coral.photo1 %>
+      </dd>
+
+      <dt>
+        Photo2
+      </dt>
+      <dd>
+        <%= @coral.photo2 %>
+      </dd>
+
+      <dt>
+        Seller
+      </dt>
+      <dd>
+        <%= @coral.seller_id %>
+      </dd>
+
+      <dt>
+        Price
+      </dt>
+      <dd>
+        <%= @coral.price %>
+      </dd>
+
+      <dt>
+        Obo
+      </dt>
+      <dd>
+        <%= @coral.obo %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@coral.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@coral.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

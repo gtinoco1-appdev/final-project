@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <div class="jumbotron">
+      <h3>
+        <%= current_user.username %>
+      </h3>
+    </div>
+  </div>
+</div>
+
+
+<a href="/photos/new" class="btn btn-block btn-outline-secondary col-md-8 offset-md-2">
+  <i class="fa fa-fw fa-plus" ></i>
+  Post new coral
+</a>
+
+
+<hr>
+
+<% current_user.corals.each do |coral| %>
+
+  <div class="row mb-5">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">
+            <a href="/users/"><%= coral.seller.username %></a>
+            <small>
+              <%= time_ago_in_words(coral.created_at) %> ago
+            </small>
+          </h4>
+        </div>
+
+        <div class="card-body">
+          <a href="/corals/<%= coral.id %>">
+            <img src="<%= coral.photo1%>" class="img-fluid">
+          </a>
+
+          <div>
+
+            <ul class="list-unstyled pt-3">
+
+              <li class="media mb-2">
+                <div class="media-body">
+                  <h6>
+                    <a href="/users/<%= coral.seller.id %>">
+                      <%= coral.seller.username %>
+                    </a>
+                    <small>
+                      <%= time_ago_in_words(coral.created_at) %> ago
+                    </small>
+                  </h6>
+                  <%= coral.caption %>
+                </div>
+                <!-- media-body -->
+              </li>
+
+            </ul>
+
+          </div>
+        </div>
+        <!-- card-body -->
+      </div>
+      <!-- card  -->
+    </div>
+    <!-- col-md-8 offset-md-2 -->
+  </div>
+  <!-- row -->
+
+<% end %>

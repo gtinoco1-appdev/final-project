@@ -1,0 +1,58 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Coral comment #<%= @coral_comment.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/coral_comments" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/coral_comments/<%= @coral_comment.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit coral comment
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_coral_comment/<%= @coral_comment.id %>" class="btn btn-block btn-outline-secondary">
+          Delete coral comment
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Coral
+      </dt>
+      <dd>
+        <%= @coral_comment.coral_id %>
+      </dd>
+
+      <dt>
+        Commenter
+      </dt>
+      <dd>
+        <%= @coral_comment.commenter_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@coral_comment.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@coral_comment.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
