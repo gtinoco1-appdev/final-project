@@ -1,38 +1,107 @@
 <div class="row mb-3">
   <div class="col-md-12">
-    <h1>
-      All families
-    </h1>
+    <h4>
+      Browse by category... 
+    </h4>
+  </div>
+</div>
 
-    <a href="/families/new" class="btn btn-block btn-outline-secondary">
-      Add a new family
-    </a>
+<div class="row">
+
+  <div class="offset-lg-2 col-lg-2 col-md-3 col-sm-6">
+    <div class="card mb-4 border-light">
+      <a href="/families/<%= @families.find(1).id %> ">
+        <img src="<%= @families.find(1).photo %>" class="card-img-top">
+      </a>
+      <div class="card-body pt-1 pb-2">
+        <div class ="text-center">
+          <a href="/families/<%=@families.find(1).id%>">
+            <%= @families.find(1).title %>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-lg-2 col-md-3 col-sm-6">
+    <div class="card mb-4 border-light">
+      <a href="/families/<%= @families.find(2).id %> ">
+        <img src="<%= @families.find(2).photo %>" class="card-img-top">
+      </a>
+      <div class="card-body pt-1 pb-1">
+        <div class ="text-center">
+          <a href="/families/<%=@families.find(2).id%>">
+            <%= @families.find(2).title %>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-2 col-md-3 col-sm-6">
+    <div class="card mb-4 border-light">
+      <a href="/families/<%= @families.find(3).id %> ">
+        <img src="<%= @families.find(3).photo %>" class="card-img-top">
+      </a>
+      <div class="card-body pt-1 pb-1">
+        <div class ="text-center">
+          <a href="/families/<%=@families.find(3).id%>">
+            <%= @families.find(3).title %>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-2 col-md-3 col-sm-6">
+    <div class="card mb-4 border-light">
+      <a href="/families/<%= @families.find(5).id %> ">
+        <img src="<%= @families.find(5).photo %>" class="card-img-top">
+      </a>
+      <div class="card-body pt-1 pb-1">
+        <div class ="text-center">
+          <a href="/families/<%=@families.find(5).id%>">
+            <%= @families.find(5).title %>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 
-<hr>
+<div class="row">
+  <div class="offset-lg-4 offset-md-3 col-lg-2 col-md-3 col-sm-6">
 
-<div class="col-md-10">
-  <div class="card-columns">
-    <% @families.each do |family| %>
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">
-            <a href="/families/<%=family.id%>"</a>
-              <%= family.title %>
-            </h4>
-          </div>
-
-          <div class="card-body">
-            <a href="/families/<%= family.id %> ">
-              <img src="<%= family.photo %>" class="img-fluid">
-            </a>
-          </div>
-          <!-- card-body -->
+    <div class="card mb-4 border-light">
+      <a href="/families/<%= @families.find(4).id %> ">
+        <img src="<%= @families.find(4).photo %>" class="card-img-top">
+      </a>
+      <div class="card-body pt-1 pb-1">
+        <div class ="text-center">
+          <a href="/families/<%=@families.find(4).id%>">
+            <%= @families.find(4).title %>
+          </a>
         </div>
-        <!-- card  -->
+      </div>
+    </div>
 
-      <% end %>
+  </div>
+
+  <div class="col-lg-2 col-md-3 col-sm-6">
+    <div class="card mb-4 border-light">
+      <a href="/families/<%= @families.find(6).id %> ">
+        <img src="<%= @families.find(6).photo %>" class="card-img-top">
+      </a>
+      <div class="card-body pt-1 pb-1">
+        <div class ="text-center">
+          <a href="/families/<%=@families.find(6).id%>">
+            <%= @families.find(6).title %>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
+  
+</div>

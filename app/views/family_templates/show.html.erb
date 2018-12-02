@@ -3,59 +3,37 @@
     <h1>
       <%= @family.title %>
     </h1>
-
-    <div class="row mb-3">
-      <div class="col">
-        <a href="/families" class="btn btn-block btn-outline-secondary">
-          Go back
-        </a>
-      </div>
-
-      <div class="col">
-        <a href="/families/<%= @family.id %>/edit" class="btn btn-block btn-outline-secondary">
-          Edit family
-        </a>
-      </div>
-
-      <div class="col">
-        <a href="/delete_family/<%= @family.id %>" class="btn btn-block btn-outline-secondary">
-          Delete family
-        </a>
-      </div>
-    </div>
-
-
-        
-    <% @corals.each do |coral| %>
-     <div class="row-mb-5">
-      <div class="col-md-8">        
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">
-              <a href="/corals/<%=coral.id%>"</a>
-                  <%= coral.title %>
-              </h4>
-            </div>
-
-            <div class="card-body">
-              <a href="/corals/<%= coral.id %> ">
-                <img src="<%= coral.photo1 %>" class="img-fluid">
-              </a>
-
-              <div>
-                <%= time_ago_in_words(coral.created_at) %> ago
-                Price: <%= coral.price %>
-              </div>
-            </div>
-            <!-- card-body -->
-          </div>
-          <!-- card  -->
-        </div>
-        <!-- col-md-8 offset-md-2 -->
-      </div>
-    </div>
-    <!-- row -->
+    <p> <%= @family.caption %> </p>
   </div>
-</div>  
+</div>
 
-<% end %>
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h6>
+      For sale:
+    </h6>
+  </div>
+
+  <div class="offset-lg-2 col-lg-8">
+    <% @family.corals.each_with_index do |coral, index| %>
+      <% if index % 3 == 0 %>
+        <div class="card-deck mb-3">
+      <% end %>
+
+        <div class="card">
+          <div class="card-body">
+            <a href="/corals/<%= coral.id %> ">
+              <h5 class="card-title text-dark"> <%= coral.title %> </h5>
+              <img src="<%= coral.photo1 %>" class="img-fluid">
+            </a>
+            <div class="text-right font-weight-bold"> <%= coral.created_at.strftime("%b %d") %></div>
+            <div class="text-right font-weight-bold"> $<%= coral.price %></div>
+          </div>
+        </div>
+        <% if index % 3 == 2 %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>

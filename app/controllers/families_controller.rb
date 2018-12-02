@@ -22,8 +22,9 @@ class FamiliesController < ApplicationController
 
   def create_row
     @family = Family.new
-    @family.photo = params.fetch("photo")
+    @family.photo = params.fetch("photo", "")
     @family.title = params.fetch("title")
+    @family.caption = params.fetch("caption","")
 
     if @family.valid?
       @family.save
@@ -36,7 +37,6 @@ class FamiliesController < ApplicationController
 
   def edit_form
     @family = Family.find(params.fetch("prefill_with_id"))
-
     render("family_templates/edit_form.html.erb")
   end
 
@@ -44,7 +44,8 @@ class FamiliesController < ApplicationController
     @family = Family.find(params.fetch("id_to_modify"))
 
     @family.title = params.fetch("title")
-    @family.photo = params.fetch("photo")
+    @family.photo = params.fetch("photo", "")
+    @family.caption = params.fetch("caption","")
 
     if @family.valid?
       @family.save

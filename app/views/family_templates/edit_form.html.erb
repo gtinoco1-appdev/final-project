@@ -4,7 +4,7 @@
 
 <hr>
 
-<form action="/update_family/<%= @family.id %>" method="post" >
+<form action="/update_family/<%= @family.id %>" method="post" enctype="multipart/form-data">
 
   <div class="form-group">
     <label for="title">
@@ -13,20 +13,25 @@
 
     <input type="text" id="title" name="title" class="form-control" value="<%= @family.title %>">
   </div>
-  
-    <div class="form-group">
-    <label for="photo">
-      Title
-    </label>
 
-    <input type="text" id="photo" name="photo" class="form-control" value="<%= @family.photo %>">
+  <div class="form-group">
+    <label for="caption">
+      Caption
+    </label>
+    <input type="text" id="caption" name="caption" class="form-control" value="<%= @family.caption %>">
   </div>
   
-  
+  <div class="form-group">
+    <label for="photo">
+      Photo
+    </label>
+    <input type="file" id="photo" name="photo" class="form-control" value="<%= @family.photo %>">
+  </div>
 
   <button class="btn btn-block btn-outline-secondary">
     Update family
   </button>
+
 </form>
 
 <hr>

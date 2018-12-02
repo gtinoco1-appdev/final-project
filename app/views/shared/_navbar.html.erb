@@ -8,6 +8,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
+<% if current_user.blank? %>        <% else %>
     <div class="collapse navbar-collapse" id="collapsible-nav-links">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -27,8 +28,6 @@
               My Posts </span></a>
         </li>
 
-        <% if current_user.blank? %>
-        <% else %>
           <li class="nav-item">
             <a class="nav-link" href="/families">
               <i class="fas fa-archive"></i>

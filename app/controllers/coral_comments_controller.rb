@@ -22,6 +22,7 @@ class CoralCommentsController < ApplicationController
 
     @coral_comment.coral_id = params.fetch("coral_id")
     @coral_comment.commenter_id = params.fetch("commenter_id")
+    @coral_comment.body = params.fetch("body")
 
     if @coral_comment.valid?
       @coral_comment.save
@@ -43,6 +44,7 @@ class CoralCommentsController < ApplicationController
 
     @coral_comment.coral_id = params.fetch("coral_id")
     @coral_comment.commenter_id = params.fetch("commenter_id")
+    @coral_comment.body = params.fetch("body")
 
     if @coral_comment.valid?
       @coral_comment.save

@@ -28,6 +28,7 @@ class Coral < ApplicationRecord
   validates :location_id, :presence => true
   
   mount_uploader :photo1, Photo1Uploader
+  mount_uploader :photo2, Photo2Uploader
   
 end
 
