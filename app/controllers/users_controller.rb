@@ -10,9 +10,9 @@ class UsersController < ApplicationController
 
     render("user_templates/show.html.erb")
   end
-  
+
   def store
-     @users = User.find(current_user.id)
+    @users = User.find(current_user.id)
 
     render("user_templates/my_page.html.erb")
   end

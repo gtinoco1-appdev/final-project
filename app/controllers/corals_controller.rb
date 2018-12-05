@@ -5,6 +5,7 @@ class CoralsController < ApplicationController
     @q = Coral.ransack(params[:q])
     @corals = @q.result(:distinct => true).includes(:family).order(:created_at => :desc)
 
+
     render("coral_templates/index.html.erb")
   end
 
@@ -12,6 +13,13 @@ class CoralsController < ApplicationController
     @coral = Coral.find(params.fetch("id_to_display"))
 
     render("coral_templates/show.html.erb")
+  end
+
+  def liked_corals
+    @r = Coral.ransack(params[:r])
+    @corals = @r.result(:distinct => true).includes(:family).order(:created_at => :desc)
+
+    render("coral_templates/my_likes.html.erb")
   end
 
   def new_form
