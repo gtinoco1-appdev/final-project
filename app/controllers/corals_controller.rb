@@ -3,8 +3,7 @@ class CoralsController < ApplicationController
     # @corals = Coral.all
     # Use Ransack Gem
     @q = Coral.ransack(params[:q])
-    @corals = @q.result(:distinct => true).includes(:family).order(:created_at => :desc)
-
+    @corals = @q.result(:distinct => true).includes(:family).where(status: "Active").order(:created_at => :desc)
 
     render("coral_templates/index.html.erb")
   end
@@ -17,7 +16,8 @@ class CoralsController < ApplicationController
 
   def liked_corals
     @r = Coral.ransack(params[:r])
-    @corals = @r.result(:distinct => true).includes(:family).order(:created_at => :desc)
+    # @corals = @r.result(:distinct => true).includes(:family).order(:created_at => :desc)
+    @corals = current_user.liked_corals
 
     render("coral_templates/my_likes.html.erb")
   end
@@ -25,7 +25,7 @@ class CoralsController < ApplicationController
   def new_form
     @coral = Coral.new
 
-    render("coral_templates/new_form.html.erb")
+    render("coral_templates/new_form1.html.erb")
   end
 
   def create_row
@@ -40,6 +40,7 @@ class CoralsController < ApplicationController
     @coral.seller_id = params.fetch("seller_id")
     @coral.price = params.fetch("price")
     @coral.obo = params.fetch("obo")
+    @coral.status = params.fetch("status")
 
     if @coral.valid?
       @coral.save
@@ -68,7 +69,9 @@ class CoralsController < ApplicationController
     @coral.seller_id = params.fetch("seller_id")
     @coral.price = params.fetch("price")
     @coral.obo = params.fetch("obo")
+    @coral.status = params.fetch("status")
 
+  
     if @coral.valid?
       @coral.save
 

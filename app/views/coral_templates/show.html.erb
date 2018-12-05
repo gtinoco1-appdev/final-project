@@ -9,6 +9,7 @@
     <h2>
       <span class="btn-group">
         <%= @coral.title %>
+
         <% i = Like.find_by({ :user_id => current_user.id, :coral_id => @coral.id }) %>
         <% if i == nil   %>
 
@@ -151,7 +152,8 @@
 </div>
 
 
-    <div id="map"></div>
+    <div id="map">
+    </div>
     <script>
       var map;
       function initMap() {
@@ -162,5 +164,6 @@
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5qwIlcKjijP_Ptmv46mk4cCjuWhSzS78&callback=initMap"
-    async defer></script>
+    async defer>
+    </script>
 
