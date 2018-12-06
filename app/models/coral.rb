@@ -28,10 +28,7 @@ class Coral < ApplicationRecord
   validates :location_id, :numericality => {:less_than_or_equal_to => 99999}
   validates :location_id, :presence => true
   validates :price, :numericality => true
-  
+
   mount_uploader :photo1, Photo1Uploader
   mount_uploader :photo2, Photo2Uploader
-  
 end
-
-

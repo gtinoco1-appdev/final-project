@@ -11,6 +11,7 @@ class CoralsController < ApplicationController
   def show
     @coral = Coral.find(params.fetch("id_to_display"))
     @user = @coral.seller
+  
 
     render("coral_templates/show.html.erb")
   end

@@ -7,6 +7,8 @@ end
 
 gem 'ransack'
 gem 'carrierwave'
+gem 'mini_magick', '4.8.0'
+
 gem "activeadmin"
 gem "devise"
 gem "jbuilder", "~> 2.5"
