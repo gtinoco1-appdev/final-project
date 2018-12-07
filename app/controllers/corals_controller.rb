@@ -11,7 +11,15 @@ class CoralsController < ApplicationController
   def show
     @coral = Coral.find(params.fetch("id_to_display"))
     @user = @coral.seller
-  
+
+    url_safe_street_address = URI.encode(@coral.location_id.to_s)
+
+    url = "https://maps.googleapis.com/maps/api/geocode/json?address=#{url_safe_street_address}&key=AIzaSyA5qwIlcKjijP_Ptmv46mk4cCjuWhSzS78"
+
+    parsed_data = JSON.parse(open(url).read)
+
+    @latitude = parsed_data.dig("results", 0, "geometry", "location", "lat")
+    @longitude = parsed_data.dig("results", 0, "geometry", "location", "lng")
 
     render("coral_templates/show.html.erb")
   end
@@ -73,7 +81,6 @@ class CoralsController < ApplicationController
     @coral.obo = params.fetch("obo")
     @coral.status = params.fetch("status")
 
-  
     if @coral.valid?
       @coral.save
 

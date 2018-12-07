@@ -6,7 +6,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @users = User.find(params.fetch("id_to_display"))
+    @user = User.find(params.fetch("id_to_display"))
+    
+    @user_active_corals = @user.corals.where(status: "Active").order(:created_at => :desc)
 
     render("user_templates/show.html.erb")
   end

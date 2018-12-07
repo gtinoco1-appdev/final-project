@@ -30,7 +30,7 @@
     </h2>
   </div>
 </div>
-  <!--row close-->
+<!--row close-->
 
 <div class="row mb-3">
 
@@ -57,7 +57,7 @@
   <% end %>
 
   <div class="col-lg-4 col-md-4 col-sm-8">
-    
+
     <div>
       <a href="/families/<%= @coral.family.id %>" class="text-secondary">
         <%= @coral.family.title %>
@@ -95,8 +95,8 @@
         </a>
       </div>
     </div>
-    
-        <% @coral.comments.each do |comment| %>
+
+    <% @coral.comments.each do |comment| %>
       <li class="media mb-2">
         <div class="media-body">
           <h6>
@@ -135,10 +135,10 @@
   </div>
 
   <div class="col-lg-3 col-md-5 col-sm-8">
-    <h6 class="text">
-      $<%= @coral.price %>
-    </h6>
-    <div class="text">
+    <h5 class="text text-center pb-3">
+      $<%= @coral.price.round %>
+    </h5>
+    <div class="text text-center">
       <%= @coral.caption %>
     </div>
   </div>
@@ -146,75 +146,124 @@
   <div class="col-lg-2">
 
     <div class="card border-white p-3">
+      <a href="/users/<%= @coral.seller.id %>">
       <img src="<%= @user.avatar %>" class="img-thumbnail rounded-circle border-secondary ">
+      <a/>
       <p class="card-text text-center">
         <a href="/users/<%= @coral.seller.id %>" class="text-secondary">
           <%= @coral.seller.username %>
         </a>
       </p>
     </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-lg-8 offset-lg-2">
-    <hr>
-    <h6>
-      <%=@coral.seller.username%>'s other posts
-    </h6>
-
-    <div class="card-deck mb-3" >
-      <% @user.corals.where.not(id: @coral.id).each_with_index do |coral, index| %>
-        <% if index > 3 %>
-          <% break %>
-        <% else %>
 
 
-          <div class="card">
-
-            <a href="/corals/<%= coral.id %> ">
-              <img src="<%= coral.photo1 %>" class="card-img-top">
-            </a>
-            <div class="card-img-overlay pr-1 pt-1">
-              <% i = Like.find_by({ :user_id => current_user.id, :coral_id => coral.id }) %>
-              <% if i == nil   %>
-                <div class="text-right">
-                  <form class="form" action="/create_like" method="post">
-                    <input type="hidden" name="coral_id" value="<%= coral.id %>">
-                    <input type="hidden" name="user_id" value="<%= current_user.id %>">
-                    <button class="btn btn-link">
-                      <i class="far fa-star text-warning"></i>
-                    </button>
-                  </form>
-                </div>
-              <% else %>
-                <div class="text-right">
-                  <a href="/delete_like/<%= i.id %>" class="btn btn-link">
-                    <i class="fas fa-star text-warning"></i>
-                  </a>
-                </div>
-              <% end %>
-            </div>
-
-            <div class="card-body pt-0">
-              <h7>
-                <a href="/corals/<%= coral.id %> ">
-                  <div class="text-dark"> <%= coral.title %>
-                  </div>
-                </a>
-                <span class="badge badge-light">
-                  $<%= coral.price %>
-                </span>
-              </h7>
-            </div>
-          </div>
-
-
-        <% end %>
-      <% end %>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyB_nAWVr-18Oi_XoadzVHmNT2vevvJfev4"></script>
+    <script>
+    var citymap = {
+            chicago: {
+            center: {lat: <%= @latitude %>, lng: <%= @longitude %> },
+            population: 500
+              }
+    };
+    
+      var map;
+      function initialize() {
+        var myLatlng = new google.maps.LatLng(<%= @latitude %>, <%= @longitude %>);
+        var mapOptions = {
+          zoom: 12,
+          center: myLatlng
+        };
+        map = new google.maps.Map(document.getElementById('map-canvas'),
+        mapOptions);
+      
+        // var marker = new google.maps.Marker({
+        //   position: myLatlng,
+        //   map: map,
+        //   title: 'Statue of Liberty'
+        // });
+      
+        for (var city in citymap) {
+          // Add the circle for this city to the map.
+          var cityCircle = new google.maps.Circle({
+            strokeColor: '#1f6b6b',
+            strokeOpacity: 0.4,
+            strokeWeight: 1,
+            fillColor: '#1f6b6b',
+            fillOpacity: 0.35,
+            map: map,
+            center: citymap[city].center,
+            radius: Math.sqrt(citymap[city].population) * 100
+ 
+          });
+        }
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <div id="map-canvas" style="width: 100%; height: 250px">
     </div>
   </div>
 </div>
 
-<div class="col-2">
-</div>
+  <div class="row">
+    <div class="col-lg-2">
+      </div>
+    
+    <div class="col-lg-8">
+      <hr>
+      <h6>
+        <%=@coral.seller.username%>'s other posts
+      </h6>
+
+      <div class="card-deck mb-3" >
+        <% @user.corals.where.not(id: @coral.id).each_with_index do |coral, index| %>
+          <% if index > 3 %>
+            <% break %>
+          <% else %>
+
+
+            <div class="card">
+
+              <a href="/corals/<%= coral.id %> ">
+                <img src="<%= coral.photo1 %>" class="card-img-top">
+              </a>
+              <div class="card-img-overlay pr-1 pt-1">
+                <% i = Like.find_by({ :user_id => current_user.id, :coral_id => coral.id }) %>
+                <% if i == nil   %>
+                  <div class="text-right">
+                    <form class="form" action="/create_like" method="post">
+                      <input type="hidden" name="coral_id" value="<%= coral.id %>">
+                      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+                      <button class="btn btn-link">
+                        <i class="far fa-star text-warning"></i>
+                      </button>
+                    </form>
+                  </div>
+                <% else %>
+                  <div class="text-right">
+                    <a href="/delete_like/<%= i.id %>" class="btn btn-link">
+                      <i class="fas fa-star text-warning"></i>
+                    </a>
+                  </div>
+                <% end %>
+              </div>
+
+              <div class="card-body pt-0">
+                <h7>
+                  <a href="/corals/<%= coral.id %> ">
+                    <div class="text-dark"> <%= coral.title %>
+                    </div>
+                  </a>
+                  <span class="badge badge-light">
+                    $<%= coral.price.round %>
+                  </span>
+                </h7>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-2">
+  </div>

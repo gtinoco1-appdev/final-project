@@ -25,6 +25,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :statuses
   has_many :corals, :foreign_key => "seller_id", :dependent => :destroy
   has_many :comments, :class_name => "CoralComment", :foreign_key => "commenter_id", :dependent => :destroy
   has_many :likes, :dependent => :destroy
@@ -35,6 +36,8 @@ class User < ApplicationRecord
   has_many :recipients, :through => :sent_follow_requests, :source => :recipient
   has_many :senders, :through => :received_follow_requests, :source => :sender
   has_many :liked_corals, :through => :likes, :source => :coral
+  
+  has_many :timeline_statuses, :through => :recipients, :source => :statuses
   
     mount_uploader :avatar, AvatarUploader
 end
