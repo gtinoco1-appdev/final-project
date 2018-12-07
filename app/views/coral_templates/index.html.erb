@@ -78,8 +78,6 @@
                 </div>
 
                 <div class="col-lg-2 pl-0 pr-0">
-                  <div>
-
                     <% i = Like.find_by({ :user_id => current_user.id, :coral_id => coral.id }) %>
                     <% if i == nil   %>
                       <form class="form-inline" action="/create_like" method="post">
@@ -95,7 +93,6 @@
                         <i class="fas fa-star text-warning"></i>
                       </a>
                     <% end %>
-                  </div>
                 </div>
               </div>
 
