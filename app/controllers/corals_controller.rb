@@ -19,6 +19,7 @@ class CoralsController < ApplicationController
 
     @latitude = parsed_data.dig("results", 0, "geometry", "location", "lat")
     @longitude = parsed_data.dig("results", 0, "geometry", "location", "lng")
+    
 
     render("coral_templates/show.html.erb")
   end
@@ -27,6 +28,7 @@ class CoralsController < ApplicationController
     @r = Coral.ransack(params[:r])
     # @corals = @r.result(:distinct => true).includes(:family).order(:created_at => :desc)
     @corals = current_user.liked_corals
+
 
     render("coral_templates/my_likes.html.erb")
   end
@@ -43,8 +45,8 @@ class CoralsController < ApplicationController
     @coral.family_id = params.fetch("family_id")
     @coral.location_id = params.fetch("location_id")
     @coral.caption = params.fetch("caption")
-    @coral.photo1 = params.fetch("photo1","")
-    @coral.photo2 = params.fetch("photo2", "")
+    @coral.photo1 = params.fetch("photo1","1")
+    @coral.photo2 = params.fetch("photo2", "1")
     @coral.seller_id = params.fetch("seller_id")
     @coral.price = params.fetch("price")
     @coral.obo = params.fetch("obo")
@@ -79,8 +81,8 @@ class CoralsController < ApplicationController
     @coral.family_id = params.fetch("family_id")
     @coral.location_id = params.fetch("location_id")
     @coral.caption = params.fetch("caption")
-    @coral.photo1 = params.fetch("photo1","")
-    @coral.photo2 = params.fetch("photo2", "")
+    @coral.photo1 = params.fetch("photo1","1")
+    @coral.photo2 = params.fetch("photo2", "1")
     @coral.seller_id = params.fetch("seller_id")
     @coral.price = params.fetch("price")
     @coral.obo = params.fetch("obo")

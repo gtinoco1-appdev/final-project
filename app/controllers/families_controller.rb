@@ -7,7 +7,7 @@ class FamiliesController < ApplicationController
 
   def show
     @family = Family.find(params.fetch("id_to_display"))
-    @corals = Coral.all
+    @corals = Coral.all.where(family: @family)
     # @q = Coral.ransack(params[:q])
     # @corals = @q.result(:distinct => true).includes(:family)
 

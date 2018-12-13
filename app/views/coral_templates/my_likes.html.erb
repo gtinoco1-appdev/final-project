@@ -1,8 +1,217 @@
 <div class="row mb-3">
   <div class="col-md-10 offset-md-2">
-     <h2>
-       My favorites
-     </h2>
+     <h5 class="text-uppercase text-secondary">
+       Favorites Posts
+     </h5>
+  </div>
+</div>
+
+
+<div class="row mb-3">
+  
+  <div class="col-md-2">
+  </div>
+
+   <div class="col-md-9">
+
+    <% total = @corals.count %>
+    <% stop = total - (total % 3) %>
+
+    <% @corals.each_with_index do |coral, index| %>
+      <% if index == stop %>
+        <% break %>
+      <% else %>
+
+        <% if index % 3 == 0 %>
+          <div class="card-deck mb-3">
+          <% end %>
+
+          <div class="card">
+            <div class="card-body pt-2">
+              <div class= "row pt-0 pl-2">
+
+                <div class="col-lg-10 pl-1">
+                  <h6>
+                    <a href="/corals/<%= coral.id %> ">
+                      <div class="text-dark mb-1"> <%= coral.title %>
+                      </div>
+                    </a>
+                    <span class="badge badge-secondary">
+                      $<%= coral.price.round %>
+                    </span>
+                  </h6>
+                </div>
+
+                <div class="col-lg-2 pl-0 pr-0">
+                  <div>
+
+                    <% i = Like.find_by({ :user_id => current_user.id, :coral_id => coral.id }) %>
+                    <% if i == nil   %>
+                      <form class="form-inline" action="/create_like" method="post">
+                        <input type="hidden" name="coral_id" value="<%= coral.id %>">
+                        <input type="hidden" name="user_id" value="<%= current_user.id %>">
+                        <button class="btn btn-link">
+                          <i class="far fa-star text-warning"></i>
+                        </button>
+                      </form>
+
+                    <% else %>
+                      <a href="/delete_like/<%= i.id %>" class="btn btn-link">
+                        <i class="fas fa-star text-warning"></i>
+                      </a>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <a href="/corals/<%= coral.id %> ">
+                <img src="<%= coral.photo1 %>" class="img-fluid">
+              </a>
+              <div class="text-right font-weight-bold"> <%= coral.created_at.strftime("%b %d") %>
+              </div>
+
+
+            </div>
+          </div>
+
+          <% if index % 3 == 2 %>
+          </div>
+        <% end %>
+
+      <% end %>
+    <% end %>
+  </div>
+
+
+  <div class = "col-md-2">
+  </div>
+
+  <% if total % 3 == 1 %>
+    <% coral = @corals[stop] %>
+
+    <div class = "col-md-3">
+      <div class = "card-deck">
+        
+        <div class="card">
+            <div class="card-body pt-2">
+              <div class= "row pt-0 pl-2">
+
+                <div class="col-lg-10 pl-1">
+                  <h6>
+                    <a href="/corals/<%= coral.id %> ">
+                      <div class="text-dark mb-1"> <%= coral.title %>
+                      </div>
+                    </a>
+                    <span class="badge badge-secondary">
+                      $<%= coral.price.round %>
+                    </span>
+                  </h6>
+                </div>
+
+                <div class="col-lg-2 pl-0 pr-0">
+
+                    <% i = Like.find_by({ :user_id => current_user.id, :coral_id => coral.id }) %>
+                    <% if i == nil   %>
+                      <form class="form-inline" action="/create_like" method="post">
+                        <input type="hidden" name="coral_id" value="<%= coral.id %>">
+                        <input type="hidden" name="user_id" value="<%= current_user.id %>">
+                        <button class="btn btn-link">
+                          <i class="far fa-star text-warning"></i>
+                        </button>
+                      </form>
+
+                    <% else %>
+                      <a href="/delete_like/<%= i.id %>" class="btn btn-link">
+                        <i class="fas fa-star text-warning"></i>
+                      </a>
+                    <% end %>
+
+                </div>
+              </div>
+
+              <a href="/corals/<%= coral.id %> ">
+                <img src="<%= coral.photo1 %>" class="img-fluid">
+              </a>
+              <div class="text-right font-weight-bold"> <%= coral.created_at.strftime("%b %d") %>
+              </div>
+
+
+            </div>
+          </div>
+
+      </div>
+
+    </div>
+  <% end %>
+
+  <% if total % 3 == 2 %>
+
+    <div class = col-md-6>
+      <div class = "card-deck">
+
+        <% @corals[stop..-1].each_with_index do |coral, index| %>
+
+        <div class="card">
+            <div class="card-body pt-2">
+              <div class= "row pt-0 pl-2">
+
+                <div class="col-lg-10 pl-1">
+                  <h6>
+                    <a href="/corals/<%= coral.id %> ">
+                      <div class="text-dark mb-1"> <%= coral.title %>
+                      </div>
+                    </a>
+                    <span class="badge badge-secondary">
+                      $<%= coral.price.round %>
+                    </span>
+                  </h6>
+                </div>
+
+                <div class="col-lg-2 pl-0 pr-0">
+                  <div>
+
+                    <% i = Like.find_by({ :user_id => current_user.id, :coral_id => coral.id }) %>
+                    <% if i == nil   %>
+                      <form class="form-inline" action="/create_like" method="post">
+                        <input type="hidden" name="coral_id" value="<%= coral.id %>">
+                        <input type="hidden" name="user_id" value="<%= current_user.id %>">
+                        <button class="btn btn-link">
+                          <i class="far fa-star text-warning"></i>
+                        </button>
+                      </form>
+
+                    <% else %>
+                      <a href="/delete_like/<%= i.id %>" class="btn btn-link">
+                        <i class="fas fa-star text-warning"></i>
+                      </a>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <a href="/corals/<%= coral.id %> ">
+                <img src="<%= coral.photo1 %>" class="img-fluid">
+              </a>
+              <div class="text-right font-weight-bold"> <%= coral.created_at.strftime("%b %d") %>
+              </div>
+
+
+            </div>
+          </div>
+
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+  </div>
+  
+  <div class="row mb-3">
+  <div class="col-md-10 offset-md-2">
+    <hr>
+     <h5 class="text-uppercase text-secondary">
+       Posts from sellers I am following
+     </h5>
   </div>
 </div>
 

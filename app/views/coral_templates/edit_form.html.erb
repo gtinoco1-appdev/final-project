@@ -97,7 +97,7 @@
         <label for="status">
           Status
         </label>
-        <%= select_tag(:status, options_for_select([["Active"], ["Draft"], ["Sold"]]), :class => "form-control") %>
+        <%= select_tag(:status, options_for_select([["Active"], ["Draft"], ["Sold"]], @coral.status), :class => "form-control") %>
       </div>
 
       <button class="btn btn-block btn-outline-secondary">
