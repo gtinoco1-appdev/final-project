@@ -1,4 +1,5 @@
 class CoralsController < ApplicationController
+
   def index
     # @corals = Coral.all
     # Use Ransack Gem
@@ -11,11 +12,9 @@ class CoralsController < ApplicationController
   def show
     @coral = Coral.find(params.fetch("id_to_display"))
     @user = @coral.seller
-
     url_safe_street_address = URI.encode(@coral.location_id.to_s)
 
     url = "https://maps.googleapis.com/maps/api/geocode/json?address=#{url_safe_street_address}&key=AIzaSyA5qwIlcKjijP_Ptmv46mk4cCjuWhSzS78"
-
     parsed_data = JSON.parse(open(url).read)
 
     @latitude = parsed_data.dig("results", 0, "geometry", "location", "lat")
@@ -34,7 +33,6 @@ class CoralsController < ApplicationController
 
   def new_form
     @coral = Coral.new
-
     render("coral_templates/new_form1.html.erb")
   end
 
@@ -45,12 +43,19 @@ class CoralsController < ApplicationController
     @coral.family_id = params.fetch("family_id")
     @coral.location_id = params.fetch("location_id")
     @coral.caption = params.fetch("caption")
-    @coral.photo1 = params.fetch("photo1")
+    @coral.photo1 = params.fetch("photo1","")
     @coral.photo2 = params.fetch("photo2", "")
     @coral.seller_id = params.fetch("seller_id")
     @coral.price = params.fetch("price")
     @coral.obo = params.fetch("obo")
     @coral.status = params.fetch("status")
+    
+   url2="https://www.zipcodeapi.com/rest/jrwAGCK8QKtZVURGSDbdZlxUuM6iHyoTqmzryiXEa9vDtBwh5tEQUhofK3QGoPrb/info.json/#{@coral.location_id}/degrees"
+   
+   zip_data = JSON.parse(open(url2).read)
+
+   @coral.city = zip_data.dig("city")
+   @coral.state = zip_data.dig("state")
 
     if @coral.valid?
       @coral.save
@@ -74,12 +79,19 @@ class CoralsController < ApplicationController
     @coral.family_id = params.fetch("family_id")
     @coral.location_id = params.fetch("location_id")
     @coral.caption = params.fetch("caption")
-    @coral.photo1 = params.fetch("photo1")
+    @coral.photo1 = params.fetch("photo1","")
     @coral.photo2 = params.fetch("photo2", "")
     @coral.seller_id = params.fetch("seller_id")
     @coral.price = params.fetch("price")
     @coral.obo = params.fetch("obo")
     @coral.status = params.fetch("status")
+    
+     url2="https://www.zipcodeapi.com/rest/jrwAGCK8QKtZVURGSDbdZlxUuM6iHyoTqmzryiXEa9vDtBwh5tEQUhofK3QGoPrb/info.json/#{@coral.location_id}/degrees"
+   
+   zip_data = JSON.parse(open(url2).read)
+
+   @coral.city = zip_data.dig("city")
+   @coral.state = zip_data.dig("state")
 
     if @coral.valid?
       @coral.save

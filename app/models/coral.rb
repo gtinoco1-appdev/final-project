@@ -15,6 +15,8 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  status      :string
+#  city        :string
+#  state       :string
 #
 
 class Coral < ApplicationRecord

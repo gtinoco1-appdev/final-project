@@ -64,11 +64,20 @@
         <%= @coral.family.title %>
       </a>
     </div>
-    <p class ="text-secondary mb-0">
-      <small>
-        posted <%= time_ago_in_words(@coral.created_at) %> ago
-      </small>
-    </p>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <p class ="text-secondary text-left mb-0">
+          <small>
+            posted <%= time_ago_in_words(@coral.created_at) %> ago
+          </small>
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <div class="text-right text-secondary"> (<%= @coral.city %>,  <%= @coral.state %>)
+        </div>
+      </div>
+    </div>
 
 
     <div class="card mb-2 border-light">
@@ -126,11 +135,11 @@
       <div class="form-group">
         <label for="body">
         </label>
-        <input type="text" id="body" name="body" class="form-control" placeholder="Message the seller">
+        <input type="text" id="body" name="body" class="form-control" placeholder="Ask a question">
       </div>
 
       <button class="btn btn-block btn-outline-secondary">
-        Add comment
+        Submit
       </button>
     </form>
   </div>
@@ -150,29 +159,37 @@
       <a href="/users/<%= @coral.seller.id %>">
         <img src="<%= @user.avatar %>" class="img-thumbnail rounded-circle border-secondary ">
         <a/>
-        <div class="text-center">
-          <a href="/users/<%= @coral.seller.id %>" class="text-secondary">
-            <%= @coral.seller.username %>
-          </a>
-          
+
+        <div class="row">
+          <div class="col-6 pr-0">
+            <div class="text-right">
+              <a href="/users/<%= @coral.seller.id %>" class="text-secondary">
+                <%= @coral.seller.username %>
+              </a>
+            </div>
+          </div>
+
+          <div class="col-6">
             <% i = FollowRequest.find_by({ :sender_id => current_user.id, :recipient_id => @coral.seller.id }) %>
             <% if i == nil   %>
-              <form class="inline" action="/create_follow_request" method="post">
+
+              <form class="form-inline" action="/create_follow_request" method="post">
+
                 <input type="hidden" name="sender_id" value="<%= current_user.id %>">
                 <input type="hidden" name="recipient_id" value="<%= @coral.seller.id %>">
-                <button class="btn btn-link">
+
+                <button class="btn btn-link pt-0 pl-0">
                   <i class="fas fa-user-plus text-dark"></i>
                 </button>
+
               </form>
             <% else %>
-
-              <a href="/delete_follow_request/<%= i.id %>" class="btn btn-link">
+              <a href="/delete_follow_request/<%= i.id %>" class="btn btn-link pt-0 pl-0">
                 <i class="fas fa-user-plus text-success"></i>
               </a>
-          
-          <% end %>
+            <% end %>
+          </div>
         </div>
-
 
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyB_nAWVr-18Oi_XoadzVHmNT2vevvJfev4"></script>
         <script>
@@ -220,67 +237,67 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2">
+    </div>
 
-    <div class="row">
-      <div class="col-lg-2">
-      </div>
+    <div class="col-lg-8">
+      <hr>
+      <h6>
+        <%=@coral.seller.username%>'s other posts
+      </h6>
 
-      <div class="col-lg-8">
-        <hr>
-        <h6>
-          <%=@coral.seller.username%>'s other posts
-        </h6>
-
-        <div class="card-deck mb-3" >
-          <% @user.corals.where.not(id: @coral.id).each_with_index do |coral, index| %>
-            <% if index > 3 %>
-              <% break %>
-            <% else %>
+      <div class="card-deck mb-3" >
+        <% @user.corals.where.not(id: @coral.id).each_with_index do |coral, index| %>
+          <% if index > 3 %>
+            <% break %>
+          <% else %>
 
 
-              <div class="card">
+            <div class="card">
 
-                <a href="/corals/<%= coral.id %> ">
-                  <img src="<%= coral.photo1 %>" class="card-img-top">
-                </a>
-                <div class="card-img-overlay pr-1 pt-1">
-                  <% i = Like.find_by({ :user_id => current_user.id, :coral_id => coral.id }) %>
-                  <% if i == nil   %>
-                    <div class="text-right">
-                      <form class="form" action="/create_like" method="post">
-                        <input type="hidden" name="coral_id" value="<%= coral.id %>">
-                        <input type="hidden" name="user_id" value="<%= current_user.id %>">
-                        <button class="btn btn-link">
-                          <i class="far fa-star text-warning"></i>
-                        </button>
-                      </form>
-                    </div>
-                  <% else %>
-                    <div class="text-right">
-                      <a href="/delete_like/<%= i.id %>" class="btn btn-link">
-                        <i class="fas fa-star text-warning"></i>
-                      </a>
-                    </div>
-                  <% end %>
-                </div>
-
-                <div class="card-body pt-0">
-                  <h7>
-                    <a href="/corals/<%= coral.id %> ">
-                      <div class="text-dark"> <%= coral.title %>
-                      </div>
+              <a href="/corals/<%= coral.id %> ">
+                <img src="<%= coral.photo1 %>" class="card-img-top">
+              </a>
+              <div class="card-img-overlay pr-1 pt-1">
+                <% i = Like.find_by({ :user_id => current_user.id, :coral_id => coral.id }) %>
+                <% if i == nil   %>
+                  <div class="text-right">
+                    <form class="form" action="/create_like" method="post">
+                      <input type="hidden" name="coral_id" value="<%= coral.id %>">
+                      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+                      <button class="btn btn-link">
+                        <i class="far fa-star text-warning"></i>
+                      </button>
+                    </form>
+                  </div>
+                <% else %>
+                  <div class="text-right">
+                    <a href="/delete_like/<%= i.id %>" class="btn btn-link">
+                      <i class="fas fa-star text-warning"></i>
                     </a>
-                    <span class="badge badge-light">
-                      $<%= coral.price.round %>
-                    </span>
-                  </h7>
-                </div>
+                  </div>
+                <% end %>
               </div>
-            <% end %>
+
+              <div class="card-body pt-0">
+                <h7>
+                  <a href="/corals/<%= coral.id %> ">
+                    <div class="text-dark"> <%= coral.title %>
+                    </div>
+                  </a>
+                  <span class="badge badge-light">
+                    $<%= coral.price.round %>
+                  </span>
+                </h7>
+              </div>
+            </div>
           <% end %>
-        </div>
+        <% end %>
       </div>
     </div>
+  </div>
 
-    <div class="col-2">
-    </div>
+  <div class="col-2">
+  </div>

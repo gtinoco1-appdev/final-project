@@ -26,7 +26,7 @@ class FollowRequestsController < ApplicationController
     if @follow_request.valid?
       @follow_request.save
 
-      redirect_back(:fallback_location => "/follow_requests", :notice => "Follow request created successfully.")
+      redirect_back(:fallback_location => "/follow_requests", :notice => "Following Seller")
     else
       render("follow_request_templates/new_form_with_errors.html.erb")
     end
@@ -58,6 +58,6 @@ class FollowRequestsController < ApplicationController
 
     @follow_request.destroy
 
-    redirect_to("/follow_requests", :notice => "Follow request deleted successfully.")
+    redirect_back(:fallback_location => "/corals", :notice => "Unfollowed Seller")
   end
 end
