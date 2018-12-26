@@ -1,0 +1,73 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h5>
+      <%= @activity.activity_type %> details
+    </h5>
+  </div>
+</div>
+
+<div class="row">
+  <div class ="col-lg-4 offset-lg-2">
+
+    <dt>
+      Contact
+    </dt>
+    <dd>
+      <%= @activity.contact %>
+    </dd>
+
+    <dt>
+      Details
+    </dt>
+    <dd>
+      <%= @activity.detail %>
+    </dd>
+
+    <dt>
+      Outcome
+    </dt>
+    <dd>
+      <%= @activity.outcome %>
+    </dd>
+
+  </div>
+  <dt>
+  </dt>
+  <div class ="col-lg-4">
+    <dt>
+      Duration
+    </dt>
+    <dd>
+      <%= @activity.length %>
+    </dd>
+
+    <dt>
+      Cost
+    </dt>
+    <dd>
+      <%= @activity.cost %>
+    </dd>
+    
+  </div>
+
+</div>
+
+<div class="row mb-3">
+  <div class="col-lg-3 offset-lg-2">
+    <a href="/activities" class="btn btn-block btn-outline-secondary">
+      Go back
+    </a>
+  </div>
+
+  <div class="col-lg-3">
+    <a href="/activities/<%= @activity.id %>/edit" class="btn btn-block btn-outline-secondary">
+      Edit activity
+    </a>
+  </div>
+
+  <div class="col-lg-3">
+    <a href="/delete_activity/<%= @activity.id %>" class="btn btn-block btn-outline-secondary">
+      Delete activity
+    </a>
+  </div>
+</div>

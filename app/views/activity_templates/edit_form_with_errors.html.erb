@@ -1,0 +1,90 @@
+<% if @activity.errors.any? %>
+  <% @activity.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit activity #<%= @activity.id %>
+</h1>
+
+<hr>
+
+<form action="/update_activity/<%= @activity.id %>" method="post">
+
+  <div class="form-group">
+    <label for="activity_type">
+      Activity type
+    </label>
+
+    <input type="text" id="activity_type" name="activity_type" class="form-control" value="<%= @activity.activity_type %>">
+  </div>
+
+  <div class="form-group">
+    <label for="date2">
+      Date
+    </label>
+
+    <input type="date" id="date2" name="date2" class="form-control" value="<%= @activity.date %>">
+  </div>
+
+  <div class="form-group">
+    <label for="length">
+      Duration
+    </label>
+
+    <input type="text" id="length" name="length" class="form-control" value="<%= @activity.duration %>">
+  </div>
+
+  <div class="form-group">
+    <label for="cost">
+      Cost
+    </label>
+
+    <input type="text" id="cost" name="cost" class="form-control" value="<%= @activity.cost %>">
+  </div>
+
+  <div class="form-group">
+    <label for="property_id">
+      Property
+    </label>
+
+    <input type="text" id="property_id" name="property_id" class="form-control" value="<%= @activity.property_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="detail">
+      Detail
+    </label>
+
+    <textarea id="detail" name="detail" class="form-control" rows="3"><%= @activity.detail %></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="outcome">
+      Outcome
+    </label>
+
+    <textarea id="outcome" name="outcome" class="form-control" rows="3"><%= @activity.outcome %></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="contact">
+      Contact
+    </label>
+
+    <input type="text" id="contact" name="contact" class="form-control" value="<%= @activity.contact %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update activity
+  </button>
+</form>
+
+<hr>
+
+<a href="/activities">
+  Go back
+</a>

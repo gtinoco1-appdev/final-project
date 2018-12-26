@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col-lg-8 offset-lg-2">
+
+    <h1>
+      Add a new activity
+    </h1>
+
+
+    <hr>
+
+    <form action="/create_activity" method="post">
+
+      <div class="form-row">
+        <div class="form-group col-lg-4 mb-0">
+          <label for="activity_type">
+            Activity Type
+          </label>
+          <%= select_tag(:activity_type, options_from_collection_for_select(ActivityType.all, :title, :title,), :class => "form-control", :include_blank => true ) %>
+
+          <a href="/activity_types/new" class="">
+            Add a type 
+          </a>
+        </div>
+
+        <div class="form-group col-lg-4 mb-0">
+          <label for="date2">
+            Date
+          </label>
+          <input type="date" id="date2" name="date" class="form-control">
+        </div>
+
+        <div class="form-group col-lg-4 mb-0">
+          <label for="length">
+            Duration (minutes)
+          </label>
+          <input type="text" id="length" name="length" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="hidden" name="property_id" class="form-control" value="<%= @property_id %>">
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group col-lg-6">
+          <label for="contact">
+            Contact
+          </label>
+          <input type="text" id="contact" name="contact" class="form-control">
+        </div>
+
+        <div class="form-group col-lg-3">
+          <label for="cost">
+            Cost
+          </label>
+          <input type="text" id="cost" name="cost" class="form-control">
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="detail">
+          Detail
+        </label>
+
+        <textarea id="detail" name="detail" class="form-control" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="outcome">
+          Outcome
+        </label>
+
+        <textarea id="outcome" name="outcome" class="form-control" rows="3"></textarea>
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Create activity
+      </button>
+    </form>
+
+    <hr>
+
+    <a href="/activities">
+      Go back
+    </a>
+
+  </div>
+</div>
