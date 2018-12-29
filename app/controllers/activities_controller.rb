@@ -22,7 +22,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new
 
     @activity.activity_type = params.fetch("activity_type")
-    @activity.date2 = params.fetch("date")
+    @activity.date2 = params.fetch("date2")
     @activity.length = params.fetch("length")
     @activity.cost = params.fetch("cost")
     @activity.property_id = params.fetch("property_id")
@@ -49,7 +49,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params.fetch("id_to_modify"))
 
     @activity.activity_type = params.fetch("activity_type")
-    @activity.date2 = params.fetch("date")
+    @activity.date2 = params.fetch("date2")
     @activity.length = params.fetch("length")
     @activity.cost = params.fetch("cost")
     @activity.property_id = params.fetch("property_id")

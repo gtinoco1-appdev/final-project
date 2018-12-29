@@ -33,17 +33,38 @@
       </dd>
 
       <dt>
-        Created at
+        cost_toggle
       </dt>
       <dd>
-        <%= time_ago_in_words(@activity_type.created_at) %> ago
+      <%=  @activity_type.cost_toggle %> 
       </dd>
 
       <dt>
-        Updated at
+        length_toggle
       </dt>
       <dd>
-        <%= time_ago_in_words(@activity_type.updated_at) %> ago
+        <%=  @activity_type.length_toggle %> 
+      </dd>
+      
+            <dt>
+        contact_toggle
+      </dt>
+      <dd>
+        <%=  @activity_type.contact_toggle %> 
+      </dd>
+      
+            <dt>
+        details_toggle
+      </dt>
+      <dd>
+        <%=  @activity_type.detail_toggle %> 
+      </dd>
+      
+            <dt>
+        outcome_toggle
+      </dt>
+      <dd>
+        <%=  @activity_type.outcome_toggle %> 
       </dd>
     </dl>
   </div>
