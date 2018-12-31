@@ -32,6 +32,13 @@
         </div>
         <input type="date" id="date2" name="date2" class="form-control" value="<%= @activity.date2 %>" disabled>
       </div>
+
+      <div class="form-group col-lg-4 mb-0">
+        <div class="mb-1">
+          Subject
+        </div>
+        <input type="text" id="subject" name="subject" class="form-control" value="<%= @activity.subject %>" disabled>
+      </div>
     </div>
 
     <div class="form-row">
@@ -39,9 +46,9 @@
       <% if @activity.activity_type.contact_toggle == "Show" %>
 
         <div class="form-group col-lg-6 mb-0">
-        <div class="mb-1">
-          Contact            
-        </div>
+          <div class="mb-1">
+            Contact            
+          </div>
           <input type="text" id="contact" name="contact" class="form-control" value="<%= @activity.contact %>" disabled>
         </div>
 
@@ -51,9 +58,9 @@
       <% if @activity.activity_type.length_toggle == "Show" %>
 
         <div class="form-group col-lg-4 mb-0">
-        <div class="mb-1">
-          Duration (minutes)            
-        </div>
+          <div class="mb-1">
+            Duration (minutes)            
+          </div>
 
           <input type="text" id="length" name="length" class="form-control" value="<%= @activity.length %>" disabled>
         </div>
@@ -65,9 +72,9 @@
       <% if @activity.activity_type.cost_toggle == "Show" %>
 
         <div class="form-group col-lg-3 mb-0">
-        <div class="mb-1">
-          Cost            
-        </div>
+          <div class="mb-1">
+            Cost            
+          </div>
           <input type="text" id="cost" name="cost" class="form-control" value="<%= @activity.cost %>" disabled>
         </div>
 
@@ -82,7 +89,7 @@
           Detail            
         </div>
         <textarea disabled id="detail" name="detail" class="form-control" rows="3"><%= @activity.detail %></textarea>
-        
+
       </div>
 
     <% else %>
@@ -90,10 +97,13 @@
 
     <% if @activity.activity_type.outcome_toggle == "Show" %>
 
-      <div class="form-group">
-        <textarea id="outcome" name="outcome" class="form-control" rows="3" value="<%= @activity.outcome %>"></textarea>
-      </div>
+      <div class="form-group mt-1 mb-0">
+        <div class="mb-1">
+          Outcome            
+        </div>
+        <textarea disabled id="outcome" name="outcome" class="form-control" rows="3"><%= @activity.outcome %></textarea>
 
+      </div>
     <% else %>
     <% end %>
 

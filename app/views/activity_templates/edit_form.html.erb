@@ -47,6 +47,13 @@
           </label>
           <input type="date" id="date2" name="date2" class="form-control" value="<%= @activity.date2 %>">
         </div>
+
+        <div class="form-group col-lg-4 mb-0">
+          <label for="subject">
+            Subject
+          </label>
+          <input type="text" id="subject" name="subject" class="form-control" value="<%= @activity.subject %>">
+        </div>
       </div>
 
       <div class="form-row">
@@ -123,11 +130,15 @@
     </form>
 
     <hr>
+ </div>
+ </div>
+ 
+      <div class="col-lg-2 offset-lg-2 pl-0 pr-0">
+        <a href="/properties/<%= @activity.property_id %>" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
 
-    <a href="/properties/<%= @activity.property_id %>">
-      Go back
-    </a>
 
+ 
 
-  </div>
-</div>
