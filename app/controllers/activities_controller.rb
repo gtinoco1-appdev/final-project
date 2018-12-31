@@ -7,7 +7,7 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params.fetch("id_to_display"))
-
+    
     render("activity_templates/show.html.erb")
   end
 
@@ -21,19 +21,19 @@ class ActivitiesController < ApplicationController
   def create_row
     @activity = Activity.new
 
-    @activity.activity_type = params.fetch("activity_type")
+    @activity.activity_type_id = params.fetch("activity_type_id")
     @activity.date2 = params.fetch("date2")
-    @activity.length = params.fetch("length")
-    @activity.cost = params.fetch("cost")
-    @activity.property_id = params.fetch("property_id")
-    @activity.detail = params.fetch("detail")
-    @activity.outcome = params.fetch("outcome")
-    @activity.contact = params.fetch("contact")
+    @activity.length = params.fetch("length","")
+    @activity.cost = params.fetch("cost","")
+    @activity.property_id = params.fetch("property_id","")
+    @activity.detail = params.fetch("detail","")
+    @activity.outcome = params.fetch("outcome","")
+    @activity.contact = params.fetch("contact","")
 
     if @activity.valid?
       @activity.save
 
-      redirect_to("/properties/#{@activity.property_id}", :notice => "Activity created successfully.")
+      redirect_to("/activities/#{@activity.id}/edit/")
     else
       render("activity_templates/new_form_with_errors.html.erb")
     end
@@ -48,19 +48,19 @@ class ActivitiesController < ApplicationController
   def update_row
     @activity = Activity.find(params.fetch("id_to_modify"))
 
-    @activity.activity_type = params.fetch("activity_type")
-    @activity.date2 = params.fetch("date2")
-    @activity.length = params.fetch("length")
-    @activity.cost = params.fetch("cost")
-    @activity.property_id = params.fetch("property_id")
-    @activity.detail = params.fetch("detail")
-    @activity.outcome = params.fetch("outcome")
-    @activity.contact = params.fetch("contact")
+    @activity.activity_type_id = params.fetch("activity_type_id","")
+    @activity.date2 = params.fetch("date2","")
+    @activity.length = params.fetch("length","")
+    @activity.cost = params.fetch("cost","")
+    @activity.property_id = params.fetch("property_id","")
+    @activity.detail = params.fetch("detail","")
+    @activity.outcome = params.fetch("outcome","")
+    @activity.contact = params.fetch("contact","")
 
     if @activity.valid?
-      @activity.save
-
-      redirect_to("/activities/#{@activity.id}", :notice => "Activity updated successfully.")
+       @activity.save
+      
+      redirect_to("/properties/#{@activity.property_id}", :notice => "Activity created successfully.")
     else
       render("activity_templates/edit_form_with_errors.html.erb")
     end

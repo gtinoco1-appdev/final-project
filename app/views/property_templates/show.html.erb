@@ -1,8 +1,8 @@
 <div class="row mb-3">
   <div class="col-md-8 offset-md-2">
-    <h1>
+    <h4 class="text-secondary text-uppercase">
       <%= @property.address %>
-    </h1>
+    </h4>
   </div>
 </div>
 
@@ -23,7 +23,7 @@
         <a href="../activities/<%= activity.id %>/" class="list-group-item list-group-item-action">
           <div class="row">
             <div class="col text-center">
-              <%= activity.activity_type %>
+              <%= activity.activity_type.title %>
             </div>
             <div class="col text-center">
               <%= activity.detail %>

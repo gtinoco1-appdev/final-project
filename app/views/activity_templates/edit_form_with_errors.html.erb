@@ -6,85 +6,127 @@
   <% end %>
 <% end %>
 
-<h1>
-  Edit activity #<%= @activity.id %>
-</h1>
+<div class="row">
+  <div class="col-lg-4 offset-lg-2">
+      <h4 class="text-secondary text-uppercase">
+        Creating new activity
+      </h4>
+    </div>
 
-<hr>
+    <div class="col-lg-2 offset-lg-1">
+      <a href="/delete_activity/<%= @activity.id %>" class="btn btn-block btn-outline-danger">
+        Delete Activity
+      </a>
+    </div>
+</div>
 
-<form action="/update_activity/<%= @activity.id %>" method="post">
 
-  <div class="form-group">
-    <label for="activity_type">
-      Activity type
-    </label>
+<div class="row">
+  <div class="col-lg-8 offset-lg-2">
+    <hr>
 
-    <input type="text" id="activity_type" name="activity_type" class="form-control" value="<%= @activity.activity_type %>">
+    <form action="/update_activity/<%= @activity.id %>" method="post">
+
+      <div class="form-row">
+
+        <div class="form-group col-lg-4 mb-0">
+          <label for="activity_type_id">
+            Activity Type            
+          </label>
+          <%= select_tag(:activity_type_id, options_from_collection_for_select(ActivityType.order("title ASC").all, :id, :title, @activity.activity_type_id), :class => "form-control", :disabled => "disabled") %>
+          <a href="/activity_types/new" class="">
+            Add a type             
+          </a>
+        </div>
+
+        <div class="form-group col-lg-4 mb-0">
+          <label for="date2">
+            Date
+          </label>
+          <input type="date" id="date2" name="date2" class="form-control" value="<%= @activity.date2 %>">
+        </div>
+
+        <% if @activity.activity_type.length_toggle == "Show" %>
+
+          <div class="form-group col-lg-4 mb-0">
+            <label for="length">
+              Duration (minutes)            
+            </label>
+            <input type="text" id="length" name="length" class="form-control" value="<%= @activity.length %>">
+          </div>
+
+        <% else %>
+        <% end %>
+
+      </div>
+
+      <div class="form-group">
+        <input type="hidden" name="property_id" class="form-control" value="<%= @activity.property_id %>">
+      </div>
+
+      <div class="form-row">
+
+        <% if @activity.activity_type.contact_toggle == "Show" %>
+
+          <div class="form-group col-lg-6">
+            <label for="contact">
+              Contact            
+            </label>
+            <input type="text" id="contact" name="contact" class="form-control" value="<%= @activity.contact %>">
+          </div>
+
+        <% else %>
+        <% end %>
+
+        <% if @activity.activity_type.cost_toggle == "Show" %>
+
+          <div class="form-group col-lg-3">
+            <label for="cost">
+              Cost            
+            </label>
+            <input type="text" id="cost" name="cost" class="form-control" value="<%= @activity.cost %>">
+          </div>
+
+        <% else %>
+        <% end %>
+      </div>
+
+      <% if @activity.activity_type.detail_toggle == "Show" %>
+
+        <div class="form-group">
+          <label for="detail">
+            Detail            
+          </label>
+          <textarea id="detail" name="detail" class="form-control" rows="3" value="<%= @activity.detail %>"></textarea>
+        </div>
+
+      <% else %>
+      <% end %>
+
+      <% if @activity.activity_type.outcome_toggle == "Show" %>
+
+        <div class="form-group">
+          <label for="outcome">
+            Outcome            
+          </label>
+          <textarea id="outcome" name="outcome" class="form-control" rows="3" value="<%= @activity.outcome %>"></textarea>
+        </div>
+
+      <% else %>
+      <% end %>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Update activity
+      </button>
+    </form>
+
+    <hr>
+
+    <a href="/activities">
+      Go back
+    </a>
+
+
   </div>
+</div>
 
-  <div class="form-group">
-    <label for="date2">
-      Date
-    </label>
-
-    <input type="date" id="date2" name="date2" class="form-control" value="<%= @activity.date %>">
-  </div>
-
-  <div class="form-group">
-    <label for="length">
-      Duration
-    </label>
-
-    <input type="text" id="length" name="length" class="form-control" value="<%= @activity.duration %>">
-  </div>
-
-  <div class="form-group">
-    <label for="cost">
-      Cost
-    </label>
-
-    <input type="text" id="cost" name="cost" class="form-control" value="<%= @activity.cost %>">
-  </div>
-
-  <div class="form-group">
-    <label for="property_id">
-      Property
-    </label>
-
-    <input type="text" id="property_id" name="property_id" class="form-control" value="<%= @activity.property_id %>">
-  </div>
-
-  <div class="form-group">
-    <label for="detail">
-      Detail
-    </label>
-
-    <textarea id="detail" name="detail" class="form-control" rows="3"><%= @activity.detail %></textarea>
-  </div>
-
-  <div class="form-group">
-    <label for="outcome">
-      Outcome
-    </label>
-
-    <textarea id="outcome" name="outcome" class="form-control" rows="3"><%= @activity.outcome %></textarea>
-  </div>
-
-  <div class="form-group">
-    <label for="contact">
-      Contact
-    </label>
-
-    <input type="text" id="contact" name="contact" class="form-control" value="<%= @activity.contact %>">
-  </div>
-
-  <button class="btn btn-block btn-outline-secondary">
-    Update activity
-  </button>
-</form>
-
-<hr>
-
-<a href="/activities">
-  Go back
-</a>

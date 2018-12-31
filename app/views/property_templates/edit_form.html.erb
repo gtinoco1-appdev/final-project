@@ -17,7 +17,7 @@
 <div class="row">
   <div class="col-lg-8 offset-lg-2">
 
-    <form action="/create_property" method="post">
+    <form action="/update_property/<%= @property.id %>" method="post">
       <div class="mb-3">
         <div class="form-check">
           <input class="form-check-input" type="radio" name="status" id="exampleRadios1" value="Active" checked>
@@ -81,7 +81,7 @@
 
     <hr>
 
-    <a href="/properties">
+    <a href="/">
       Go back
     </a>
 
