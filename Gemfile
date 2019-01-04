@@ -14,8 +14,14 @@ gem "sass-rails", "~> 5.0"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "uglifier", ">= 1.3.0"
 
+gem "prawn"
+gem 'prawn-table'
+
+gem "carrierwave"
+gem "cloudinary"
+
 group :production do
-  gem "pg"
+  gem "pg", "~> 0.18"
   gem "rails_12factor"
 end
 
@@ -28,9 +34,10 @@ group :development, :test do
   gem "draft_log", github: "firstdraft/draft_log"
   gem "grade_runner", github: "firstdraft/grade_runner"
   gem "pry-rails"
-  gem "sqlite3"
   gem "web_git", github: "firstdraft/web_git"
 end
+
+  gem "sqlite3", :group => :development
 
 group :development do
   gem "annotate"

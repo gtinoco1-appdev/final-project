@@ -1,0 +1,72 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Activity type #<%= @activity_type.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/activity_types" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/activity_types/<%= @activity_type.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit activity type
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_activity_type/<%= @activity_type.id %>" class="btn btn-block btn-outline-secondary">
+          Delete activity type
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @activity_type.title %>
+      </dd>
+
+      <dt>
+        cost_toggle
+      </dt>
+      <dd>
+      <%=  @activity_type.cost_toggle %> 
+      </dd>
+
+      <dt>
+        length_toggle
+      </dt>
+      <dd>
+        <%=  @activity_type.length_toggle %> 
+      </dd>
+      
+            <dt>
+        contact_toggle
+      </dt>
+      <dd>
+        <%=  @activity_type.contact_toggle %> 
+      </dd>
+      
+            <dt>
+        details_toggle
+      </dt>
+      <dd>
+        <%=  @activity_type.detail_toggle %> 
+      </dd>
+      
+            <dt>
+        outcome_toggle
+      </dt>
+      <dd>
+        <%=  @activity_type.outcome_toggle %> 
+      </dd>
+    </dl>
+  </div>
+</div>
+

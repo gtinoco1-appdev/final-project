@@ -1,0 +1,33 @@
+<% if @activity_type.errors.any? %>
+  <% @activity_type.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit activity type #<%= @activity_type.id %>
+</h1>
+
+<hr>
+
+<form action="/update_activity_type/<%= @activity_type.id %>" method="post">
+
+  <div class="form-group">
+    <label for="title">
+      Title
+    </label>
+    <input type="text" id="title" name="title" class="form-control" value="<%= @activity_type.title %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update activity type
+  </button>
+</form>
+
+<hr>
+
+<a href="/activity_types">
+  Go back
+</a>
