@@ -7,8 +7,24 @@ class PropertiesController < ApplicationController
 
   def show
     @property = Property.find(params.fetch("id_to_display"))
-
+    
     render("property_templates/show.html.erb")
+  end
+  
+  def create_pdf
+    @property = Property.find(params.fetch("id_to_display"))
+    
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ReportPdf.new(@property)
+        send_data pdf.render, filename: "test",
+                              type: "application/pdf",
+                              disposition: "inline"
+            
+      end
+    end
+    
   end
 
   def new_form
@@ -30,7 +46,7 @@ class PropertiesController < ApplicationController
     if @property.valid?
       @property.save
 
-      redirect_to("/properties/", :notice => "Property created successfully.")
+      redirect_to("/", :notice => "Property created successfully.")
     else
       render("property_templates/new_form_with_errors.html.erb")
     end

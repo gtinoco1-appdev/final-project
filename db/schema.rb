@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181231002553) do
+ActiveRecord::Schema.define(version: 20190104032213) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20181231002553) do
     t.integer "length"
     t.date "date2"
     t.text "subject"
+    t.string "flyer_img"
+    t.string "postcard_img"
   end
 
   create_table "activity_types", force: :cascade do |t|
@@ -50,6 +52,8 @@ ActiveRecord::Schema.define(version: 20181231002553) do
     t.string "detail_toggle"
     t.string "outcome_toggle"
     t.string "contact_toggle"
+    t.string "flyer_img_toggle"
+    t.string "postcard_img_toggle"
   end
 
   create_table "admin_users", force: :cascade do |t|

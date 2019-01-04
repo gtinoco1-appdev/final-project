@@ -15,9 +15,13 @@
 #  length           :integer
 #  date2            :date
 #  subject          :text
+#  flyer_img        :string
+#  postcard_img     :string
 #
 
 class Activity < ApplicationRecord
-    belongs_to :property
-    belongs_to :activity_type
+  belongs_to :property
+  belongs_to :activity_type
+  mount_uploader :flyer_img, FlyerImgUploader
+  mount_uploader :postcard_img, PostcardImgUploader
 end

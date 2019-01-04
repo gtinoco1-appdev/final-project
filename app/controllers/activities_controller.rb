@@ -29,7 +29,9 @@ class ActivitiesController < ApplicationController
     @activity.detail = params.fetch("detail","")
     @activity.outcome = params.fetch("outcome","")
     @activity.contact = params.fetch("contact","")
-   @activity.subject = params.fetch("subject","")
+    @activity.subject = params.fetch("subject","")
+    @activity.flyer_img = params.fetch("flyer_img","")
+    @activity.postcard_img = params.fetch("postcard_img","")
 
     if @activity.valid?
       @activity.save
@@ -57,7 +59,9 @@ class ActivitiesController < ApplicationController
     @activity.detail = params.fetch("detail","")
     @activity.outcome = params.fetch("outcome","")
     @activity.contact = params.fetch("contact","")
-     @activity.subject = params.fetch("subject","")
+    @activity.subject = params.fetch("subject","")
+    @activity.flyer_img = params.fetch("flyer_img","")
+    @activity.postcard_img = params.fetch("postcard_img","")
 
     if @activity.valid?
        @activity.save

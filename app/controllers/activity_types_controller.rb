@@ -20,11 +20,15 @@ class ActivityTypesController < ApplicationController
   def create_row
     @activity_type = ActivityType.new
 
+    @activity_type.title = params.fetch("title")
     @activity_type.length_toggle = params.fetch("length_toggle", "")
     @activity_type.cost_toggle = params.fetch("cost_toggle", "")
     @activity_type.contact_toggle = params.fetch("contact_toggle", "")
     @activity_type.detail_toggle = params.fetch("detail_toggle", "")
     @activity_type.outcome_toggle = params.fetch("outcome_toggle", "")
+    @activity_type.flyer_img_toggle = params.fetch("flyer_img_toggle", "")
+    @activity_type.postcard_img_toggle = params.fetch("postcard_img_toggle", "")
+    
 
     if @activity_type.valid?
       @activity_type.save
@@ -50,6 +54,8 @@ class ActivityTypesController < ApplicationController
     @activity_type.contact_toggle = params.fetch("contact_toggle", "")
     @activity_type.detail_toggle = params.fetch("detail_toggle", "")
     @activity_type.outcome_toggle = params.fetch("outcome_toggle", "")
+    @activity_type.flyer_img_toggle = params.fetch("flyer_img_toggle", "")
+    @activity_type.postcard_img_toggle = params.fetch("postcard_img_toggle", "")
 
     if @activity_type.valid?
       @activity_type.save

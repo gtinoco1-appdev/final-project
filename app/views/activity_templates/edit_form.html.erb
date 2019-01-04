@@ -20,7 +20,7 @@
   <div class="col-lg-8 offset-lg-2">
     <hr>
 
-    <form action="/update_activity/<%= @activity.id %>" method="post">
+    <form action="/update_activity/<%= @activity.id %>" method="post" enctype="multipart/form-data">
 
       <div class="form-row">
 
@@ -67,78 +67,100 @@
             <input type="text" id="contact" name="contact" class="form-control" value="<%= @activity.contact %>">
           </div>
 
-        <% else %>
-        <% end %>
+          <% else %>
+            <% end %>
 
-        <% if @activity.activity_type.length_toggle == "Show" %>
+              <% if @activity.activity_type.length_toggle == "Show" %>
 
-          <div class="form-group col-lg-4 mb-0">
-            <label for="length">
+                <div class="form-group col-lg-4 mb-0">
+                  <label for="length">
               Duration (minutes)            
             </label>
-            <input type="text" id="length" name="length" class="form-control" value="<%= @activity.length %>">
-          </div>
+                  <input type="text" id="length" name="length" class="form-control" value="<%= @activity.length %>">
+                </div>
 
-        <% else %>
-        <% end %>
+                <% else %>
+                  <% end %>
 
 
-        <% if @activity.activity_type.cost_toggle == "Show" %>
+                    <% if @activity.activity_type.cost_toggle == "Show" %>
 
-          <div class="form-group col-lg-3">
-            <label for="cost">
+                      <div class="form-group col-lg-3">
+                        <label for="cost">
               Cost            
             </label>
-            <input type="text" id="cost" name="cost" class="form-control" value="<%= @activity.cost %>">
-          </div>
+                        <input type="text" id="cost" name="cost" class="form-control" value="<%= @activity.cost %>">
+                      </div>
+
+                      <% else %>
+                        <% end %>
+      </div>
+
+      <% if @activity.activity_type.flyer_img_toggle == "Show" %>
+
+        <div class="form-group">
+          <label for="flyer_img">
+            Upload Flyer Image            
+          </label>
+          <input type="file" id="flyer_img" name="flyer_img" class="form-control" value=" <%= @activity.flyer_img %>">
+        </div>
 
         <% else %>
-        <% end %>
-      </div>
+          <% end %>
 
-      <% if @activity.activity_type.detail_toggle == "Show" %>
+            <% if @activity.activity_type.postcard_img_toggle == "Show" %>
 
-        <div class="form-group">
-          <label for="detail">
+              <div class="form-group">
+                <label for="flyer_img">
+            Upload Postcard Image            
+          </label>
+                <input type="file" id="postcard_img" name="postcard_img" class="form-control" value="<%= @activity.postcard_img %>">
+              </div>
+
+              <% else %>
+                <% end %>
+
+                  <% if @activity.activity_type.detail_toggle == "Show" %>
+
+                    <div class="form-group">
+                      <label for="detail">
             Detail            
           </label>
-          <textarea id="detail" name="detail" class="form-control" rows="3" value="<%= @activity.detail %>"> <%= @activity.detail %> </textarea>
-        </div>
+                      <textarea id="detail" name="detail" class="form-control" rows="3" value="<%= @activity.detail %>"> <%= @activity.detail %> </textarea>
+                    </div>
 
-      <% else %>
-      <% end %>
+                    <% else %>
+                      <% end %>
 
-      <% if @activity.activity_type.outcome_toggle == "Show" %>
 
-        <div class="form-group">
-          <label for="outcome">
+
+                        <% if @activity.activity_type.outcome_toggle == "Show" %>
+
+                          <div class="form-group">
+                            <label for="outcome">
             Outcome            
           </label>
-          <textarea id="outcome" name="outcome" class="form-control" rows="3" value="<%= @activity.outcome %>"></textarea>
-        </div>
+                            <textarea id="outcome" name="outcome" class="form-control" rows="3" value="<%= @activity.outcome %>"></textarea>
+                          </div>
 
-      <% else %>
-      <% end %>
+                          <% else %>
+                            <% end %>
 
-      <div class="form-group">
-        <input type="hidden" name="property_id" class="form-control" value="<%= @activity.property_id %>">
-      </div>
+                              <div class="form-group">
+                                <input type="hidden" name="property_id" class="form-control" value="<%= @activity.property_id %>">
+                              </div>
 
-      <button class="btn btn-block btn-outline-secondary">
+                              <button class="btn btn-block btn-outline-secondary">
         Update activity
       </button>
     </form>
 
     <hr>
- </div>
- </div>
- 
-      <div class="col-lg-2 offset-lg-2 pl-0 pr-0">
-        <a href="/properties/<%= @activity.property_id %>" class="btn btn-block btn-outline-secondary">
+  </div>
+</div>
+
+<div class="col-lg-2 offset-lg-2 pl-0 pr-0">
+  <a href="/properties/<%= @activity.property_id %>" class="btn btn-block btn-outline-secondary">
           Go back
         </a>
-      </div>
-
-
- 
-
+</div>

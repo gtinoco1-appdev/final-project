@@ -48,6 +48,8 @@ Rails.application.routes.draw do
   # READ
   get("/properties", { :controller => "properties", :action => "index" })
   get("/properties/:id_to_display", { :controller => "properties", :action => "show" })
+  get("/properties/:id_to_display/report", { :controller => "properties", :action => "create_pdf" }) 
+  
 
   # UPDATE
   get("/properties/:prefill_with_id/edit", { :controller => "properties", :action => "edit_form" })

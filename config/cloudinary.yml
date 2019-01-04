@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: gtinoco
+  api_key: '516641599478455'
+  api_secret: MKpqFakZQ5BzneM_AMe5o3qc5mI
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: gtinoco
+  api_key: '516641599478455'
+  api_secret: MKpqFakZQ5BzneM_AMe5o3qc5mI
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: gtinoco
+  api_key: '516641599478455'
+  api_secret: MKpqFakZQ5BzneM_AMe5o3qc5mI
+  enhance_image_tag: true
+  static_file_support: false
